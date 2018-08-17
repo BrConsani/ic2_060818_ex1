@@ -31,6 +31,7 @@ struct Patient createPatient(int numberCard){
 		printf("Dia %i: ", (i+1));
 		scanf("%f", &patient.days[i]);
 	}
+	patient.status=0;
 	printf("*****************************************************\n\n");
 	printf("-----------------------------------------------------\n");
 	return patient;
@@ -72,6 +73,7 @@ void showCard(struct Patient patient){
 	printf("Peso ao entrar (g): %.2f\n", patient.inputWeight);
 	if(patient.status == 1){
 		printf("Peso ao sair   (g): %.2f\n", patient.outputWeight);
+		printf("Peso perdindo (g): %.2f\n", (patient.inputWeight - patient.outputWeight));
 	}
 	printf("Nome: %s\n", patient.name);
 	printf("Dias de tratamento: %i\n", patient.amountOfDays);
@@ -123,7 +125,7 @@ main(){
 				int number;
 				printf("Deseja dar alta a qual paciente?\n");
 				for(i=0; i<20; i++){
-					if(patients[i].numberCard > 0){
+					if(patients[i].numberCard > 0 && patients[i].status == 0){
 						printf(" %i. %s\n", patients[i].numberCard, patients[i].name);
 					}
 				}	
